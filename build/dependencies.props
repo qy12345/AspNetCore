@@ -4,6 +4,25 @@
     <!-- MicrosoftNETCoreApp21PackageVersion is assigned at the bottom so it can automatically pick up MicrosoftNETCoreAppPackageVersion in an orchestrated build. -->
     <MicrosoftNETCoreAppPackageVersion>2.1.6-servicing-27017-02</MicrosoftNETCoreAppPackageVersion>
     <MicrosoftNETCoreDotNetAppHostPackageVersion>2.1.6-servicing-27017-02</MicrosoftNETCoreDotNetAppHostPackageVersion>
+    <!-- Packages from aspnet/Extensions -->
+    <MicrosoftAspNetCoreBenchmarkRunnerSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftAspNetCoreBenchmarkRunnerSourcesPackageVersion>
+    <MicrosoftAspNetCoreCertificatesGenerationSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftAspNetCoreCertificatesGenerationSourcesPackageVersion>
+    <MicrosoftExtensionsClosedGenericMatcherSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsClosedGenericMatcherSourcesPackageVersion>
+    <MicrosoftExtensionsCommandLineUtilsSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsCommandLineUtilsSourcesPackageVersion>
+    <MicrosoftExtensionsCopyOnWriteDictionarySourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsCopyOnWriteDictionarySourcesPackageVersion>
+    <MicrosoftExtensionsHashCodeCombinerSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsHashCodeCombinerSourcesPackageVersion>
+    <MicrosoftExtensionsObjectMethodExecutorSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsObjectMethodExecutorSourcesPackageVersion>
+    <MicrosoftExtensionsObjectPoolPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsObjectPoolPackageVersion>
+    <MicrosoftExtensionsPrimitivesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsPrimitivesPackageVersion>
+    <MicrosoftExtensionsProcessSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsProcessSourcesPackageVersion>
+    <MicrosoftExtensionsPropertyActivatorSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsPropertyActivatorSourcesPackageVersion>
+    <MicrosoftExtensionsPropertyHelperSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsPropertyHelperSourcesPackageVersion>
+    <MicrosoftExtensionsRazorViewsSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsRazorViewsSourcesPackageVersion>
+    <MicrosoftExtensionsSecurityHelperSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsSecurityHelperSourcesPackageVersion>
+    <MicrosoftExtensionsStackTraceSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsStackTraceSourcesPackageVersion>
+    <MicrosoftExtensionsTypeNameHelperSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsTypeNameHelperSourcesPackageVersion>
+    <MicrosoftExtensionsValueStopwatchSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsValueStopwatchSourcesPackageVersion>
+    <MicrosoftExtensionsWebEncodersSourcesPackageVersion>2.1.6-servicing-31078</MicrosoftExtensionsWebEncodersSourcesPackageVersion>
   </PropertyGroup>
 
   <Import Project="$(DotNetPackageVersionPropsPath)" Condition="'$(DotNetPackageVersionPropsPath)' != ''" />

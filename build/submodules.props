@@ -36,7 +36,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Repository Include="Common" />
     <Repository Include="Identity" />
     <Repository Include="MetaPackages" PatchPolicy="CascadeVersions" />
     <Repository Include="Scaffolding" PatchPolicy="AlwaysUpdate" />

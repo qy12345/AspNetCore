@@ -1,0 +1,48 @@
+<Project>
+
+  <PropertyGroup>
+    <CodeSignDependsOn>$(CodeSignDependsOn);CollectFileSignInfo</CodeSignDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CollectFileSignInfo">
+    <ItemGroup>
+      <_RepositoryProject Remove="@(_RepositoryProject)" />
+      <_RepositoryProject Include="$(MSBuildProjectFullPath)" Condition="'%(Repository.Identity)' != ''">
+        <AdditionalProperties>RepositoryRoot=%(Repository.RootPath)</AdditionalProperties>
+        <Build>%(Repository.Build)</Build>
+      </_RepositoryProject>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <GetFileSignInfoProps>
+        AssemblySigningCertName=$(AssemblySigningCertName);
+        AssemblySigning3rdPartyCertName=$(AssemblySigning3rdPartyCertName);
+        PowerShellSigningCertName=$(PowerShellSigningCertName);
+        PackageSigningCertName=$(PackageSigningCertName);
+        VsixSigningCertName=$(VsixSigningCertName);
+        JarSigningCertName=$(JarSigningCertName)
+      </GetFileSignInfoProps>
+    </PropertyGroup>
+
+    <MSBuild Projects="@(_RepositoryProject)"
+             Targets="_GetFileSignInfo"
+             Properties="$(GetFileSignInfoProps);$(DesignTimeBuildProps);DesignTimeBuild=true;Configuration=$(Configuration);BuildNumber=$(BuildNumber);CustomAfterKoreBuildTargets=$(MSBuildThisFileFullPath)"
+             BuildInParallel="true">
+      <Output TaskParameter="TargetOutputs" ItemName="_RepoFileSignInfo" />
+    </MSBuild>
+
+    <ItemGroup>
+      <_FilesToSign Include="@(_RepoFileSignInfo)" Condition="'%(_RepoFileSignInfo.IsFileToSign)' == 'true' AND '%(_RepoFileSignInfo.Container)' != '' " />
+      <FilesToExcludeFromSigning Include="@(_RepoFileSignInfo->'%(FileName)%(Extension)')" Condition="'%(_RepoFileSignInfo.IsFileToExcludeFromSign)' == 'true'" />
+      <FilesToExcludeFromSigning Remove="@(_FilesToSign->'%(FileName)%(Extension)')" />
+      <FilesToSign Include="@(_FilesToSign)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_GetFileSignInfo" DependsOnTargets="GetArtifactInfo" Returns="@(_FileSignInfo)">
+    <ItemGroup>
+      <_FileSignInfo Include="@(FilesToSign)" IsFileToSign="true" />
+      <_FileSignInfo Include="@(FilesToExcludeFromSigning)" IsFileToExcludeFromSign="true" />
+    </ItemGroup>
+  </Target>
+</Project>

@@ -4,6 +4,7 @@
   <PropertyGroup>
     <UnitTestFxProject>$(RepositoryRoot)src\Framework\Framework.UnitTests\Framework.UnitTests.csproj</UnitTestFxProject>
     <UnitTestFxProject>$([MSBuild]::NormalizePath($(UnitTestFxProject)))</UnitTestFxProject>
+    <CodeSignDependsOn>$(CodeSignDependsOn);GetSharedFxFilesToSign</CodeSignDependsOn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +15,17 @@
     <ProjectToBuild Include="$(RepositoryRoot)src\Installers\Archive.Redist\*.*proj" />
   </ItemGroup>
 
-  <Target Name="BuildSharedFx" DependsOnTargets="_BuildSharedFxProjects;TestSharedFx"/>
+  <Target Name="BuildSharedFx" DependsOnTargets="_BuildSharedFxProjects;TestSharedFx;CodeSign" />
+
+  <Target Name="GetSharedFxFilesToSign">
+    <ItemGroup>
+      <FilesToSign Include="$(ArtifactsDir)$(Configuration)\installers\*.zip" Certificate="None" />
+      <FilesToSign Include="$(BuildDir)Microsoft.AspNetCore.App.*.nupkg" Certificate="$(PackageSigningCertName)" />
+      <FilesToSign Include="$(BuildDir)runtime.*.Microsoft.AspNetCore.App.*.nupkg" Certificate="$(PackageSigningCertName)" />
+      <FilesToSign Include="$(BuildDir)Microsoft.AspNetCore.All.*.nupkg" Certificate="$(PackageSigningCertName)" />
+      <FilesToSign Include="$(BuildDir)runtime.*.Microsoft.AspNetCore.All.*.nupkg" Certificate="$(PackageSigningCertName)" />
+    </ItemGroup>
+  </Target>
 
   <Target Name="_BuildSharedFxProjects" DependsOnTargets="GeneratePropsFiles;ResolveCommitHash">
 

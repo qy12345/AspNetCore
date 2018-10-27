@@ -97,6 +97,8 @@ This targets file should only be imported by .shfxproj files.
     <ProjectRuntimeConfigFilePath>$(MetadataOutputPath)$(SharedFxName).runtimeconfig.json</ProjectRuntimeConfigFilePath>
     <SharedFxDepsFilePath>$(MetadataOutputPath)$(SharedFxName).deps.json</SharedFxDepsFilePath>
     <VersionFileOutputPath>$(MetadataOutputPath).version</VersionFileOutputPath>
+
+    <TargetPath>$(PackageOutputPath)$(PackageId).$(PackageVersion).nupkg</TargetPath>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
